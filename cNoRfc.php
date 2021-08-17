@@ -1,5 +1,5 @@
 <?php
-include("funcionFecha.php");
+include("funcionFechaUndia.php");
 require('fpdf/fpdf.php');
 $nombre = "JUAREZ GARCIA MANUEL";
 $text1="BANCO REGIONAL, S.A.,";

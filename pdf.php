@@ -1,6 +1,12 @@
 <?php
+
+$html = 'Ahora puede imprimir fácilmente texto mezclando diferentes estilos: <b>negrita</b>, <i>itálica</i>,
+<u>subrayado</u>, o ¡ <b><i><u>todos a la vez</u></i></b>!<br><br>También puede incluir enlaces en el
+texto, como <a href="http://www.fpdf.org">www.fpdf.org</a>, o en una imagen: pulse en el logotipo.';
     include("funcionFecha.php");
-    $nCliente = $_GET["nCliente"];
+    $nombre = $_GET["nombre"];
+    $apellido = $_GET["apellido"];
+    $nCliente = $apellido." ".$nombre;
     $texto = "Por medio de la presente autorizo que de acuerdo al contrato que firmé en INFONAVIT para la remodelación de mi vivienda  se efectué el pago del 8.22% del monto otorgado para la ejecución de los trabajos a Inco Vivir Bien S. de R.L. de C.V por el concepto de prestación de servicios contemplados en el contrato celebrado entre el derechohabiente y el administrador.";
     $texto = utf8_decode($texto);
     $texto2 = "Así mismo solicito también le sea otorgado el adelanto para el inicio de los trabajos a CPC DE GDL CONSTRUCTORA S.A DE C.V.  para que inicie con los mismos de forma inmediata.";
@@ -16,6 +22,7 @@
     $pdf = new FPDF();
     $pdf->AddPage();
     $pdf->SetMargins(20, 20, 20);
+    //$pdf->Image('credencial.jpg',0,0,250,250,'JPG','http://www.fpdf.org');
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(80);
     $pdf->Cell(40,10," Tuxtla Gutierrez, Chiapas, a ".$dia." de ".$nombreMes." de ". $anio);

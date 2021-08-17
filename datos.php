@@ -138,73 +138,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-8">
-                        <div class="contact-form-wrapper">
-                            <div class="row">
-                                <div class="col-xl-10 col-lg-8 mx-auto">
-                                    <div class="section-title text-center mb-50">
-                                        <span class="wow fadeInDown" data-wow-delay=".2s">Cliente</span>
-                                        <h2 class="wow fadeInUp" data-wow-delay=".4s">Agregar cliente</h2>
-                                        <p class="wow fadeInUp" data-wow-delay=".6s">Rellena todos los datos correctamente</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <form action="insertarCliente.php" method="POST" class="contact-form">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="text" name="nombre" id="nombre" placeholder="Nombre" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="apellido" id="apellido" placeholder="Apellido" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="RFC" id="RFC" placeholder="RFC" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="CURP" id="CURP" placeholder="CURP" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="calle" id="calle" placeholder="Calle" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="colonia" id="colonia" placeholder="Colonia" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="delegacion" id="delegacion" placeholder="Delegacion/Municipio" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="email" name="correo" id="correo" placeholder="Email" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="number" name="montoObra" id="montoObra" placeholder="Monto de la Obra" step="0.01" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="date" name="fechaInicio" id="fechaInicio" placeholder="Fecha de Inicio" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="date" name="fechaFin" id="fechaFin" placeholder="Fecha Final" >
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="number" name="movil" id="movil" placeholder="Movil" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="number" name="telefono" id="telefono" placeholder="Télefono Alternativo" >
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" name="concubina" id="concubina" placeholder="Concubino/a" >
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="button text-center">
-                                            <button type="submit" class="theme-btn">Registrar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="table-responsive">
+                    <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">RFC</th>
+                        <th scope="col">CURP</th>
+                        <th scope="col">calle</th>
+                        <th scope="col">colonia</th>
+                        <th scope="col">delegacion</th>
+                        <th scope="col">correo</th>
+                        <th scope="col">montoObra</th>
+                        <th scope="col">acciones</th>
+                        <th scope="col">NoRFC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        include("conexion.php");
+                        $sql = "SELECT * FROM cliente";
+                        $result = $conn->query($sql);
+                        if ($result->num_rows > 0) {
+                            // output data of each row
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr><th scope='row'>".$row["id"]."</th><td>" . $row["nombre"]. "</td><td>" . $row["apellido"]."</td><td>".$row["RFC"]."</td><td>".$row["CURP"]."</td><td>".$row["calle"]."</td><td>".$row["colonia"]."</td><td>".$row["delegacion"]."</td><td>".$row["correo"]."</td><td>".$row["montoObra"]."</td>"."<td><a href='pdf.php?nombre=".$row["nombre"]."&apellido=".$row["apellido"]."' target='_blank'>Autorizacion</a></td>"."<td><a href='cNoRfc.php?nombre=".$row["nombre"]."&apellido=".$row["apellido"]."' target='_blank'>No RFC</a></td></tr>";
+                            }
+                        } else {
+                            echo "0 results";
+                        }
+                        mysqli_close($conn);
+                    ?>
+                    </tbody>
+                    </table>
                     </div>
                 </div>
             </div>
